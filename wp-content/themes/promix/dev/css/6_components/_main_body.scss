@@ -1,0 +1,93 @@
+
+
+/***************************
+    CONTAINERS
+***************************/
+.main-header, .main-container{
+  margin: 0 auto;
+  padding: 0 10px;
+  width: calc(100% - 20px);
+}
+
+.page-container{
+  position: relative;
+  min-height: 100%;
+}
+
+.main-container{
+  max-width: $page-max-width;
+  padding-top: 20px;
+  padding-bottom: $footer-height+20px;
+
+  @include mobile-only{
+    padding-top: 55px;
+  }
+}
+
+.main-content{
+  border: 1px solid $white;
+  border-radius: $radius;
+  padding: 10px;
+
+  background-color: $black;
+}
+
+.clear{
+  clear: both;
+}
+
+
+
+/***************************
+    HEADERS
+***************************/
+.pmx-h1{
+  padding-left: 10px;
+  font-size: $font-size-title;
+  @include mobile-only{
+    text-align: center;
+  }
+}
+
+.pmx-h2{
+  font-size: $font-size-title;
+}
+
+.pmx-h1, .pmx-h2{
+  color: $orange;
+  font-family: 'Merienda';
+}
+
+
+
+/***************************
+    LISTS
+***************************/
+.social-list{
+  .social-list-item{
+    display: inline-block;
+    .icon{
+      color: $white;
+    }
+  }
+}
+
+
+
+
+/***************************
+    BUTTONS
+***************************/
+.pmx-btn{
+  padding: 10px 20px;
+  border-color: transparent;
+  border-radius: $radius;
+
+  cursor: pointer;
+  font-weight: bold;
+
+  &.pmx-primary{
+    background-color: $orange;
+    color: $white;
+  }
+}

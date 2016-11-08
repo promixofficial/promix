@@ -1,0 +1,197 @@
+/*
+Theme Name: Pro-MIX
+Theme URI: http://promixoficial.com
+Author: Akira Hanashiro
+Author URI: https://promixoficial.org/akira
+Description: Pro-MIX theme
+Version: 1.0
+Text Domain: promix
+
+*/
+
+@import "1_settings/1_settings";
+@import "2_tools/2_tools";
+@import "3_generic/3_generic";
+@import "4_base/4_base";
+@import "5_objects/5_objects";
+@import "6_components/6_components";
+@import "7_trumps/7_trumps";
+
+
+/*
+
+Settings:   Global variables, config switches.
+Tools:      Default mixins and functions.
+Generic:    Ground-zero styles (Normalize.css, resets, box-sizing).
+Base:       Unclassed HTML elements (type selectors).
+Objects:    Cosmetic-free design patterns.
+Components: Designed components, chunks of UI.
+Trumps:     Helpers and overrides.
+
+*/
+
+/*  INDEX
+**************/
+.pmx-featured-media-list{
+  width: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+
+  @include desktop-only{
+    //justify-content: space-around;
+  }
+  .pmx-media-item{
+    &:first-child{
+      width: 100%;
+    }
+    @include desktop-only{
+      &:nth-child(2), &:nth-child(3){
+        width: 47%;
+      }
+      width: 30%;
+    }
+    @include mobile-only{
+      &:nth-child(2), &:nth-child(3){
+        width: 100%;
+      }
+      width: 45%;
+    }
+    @media (max-width : 450px) {
+      width: 100%;
+    }
+  }
+
+  .pmx-media-item{
+    position: relative;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: width 0.3s ease, background-color 0.8s;
+    max-height: 250px;
+    min-height: 250px;
+    overflow: hidden;
+    &:first-child{
+      margin-top: 10px;
+      max-height: 300px;
+    }
+  }
+  .pmx-media-figure{
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+  .pmx-media-face{
+    max-width: 100%;
+    min-width: 100%;
+  }
+  .pmx-media-caption{
+    position: absolute;
+    background-color: rgba(0,0,0,0.8);
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+  }
+  .pmx-media-title{
+    font-size: 25px;
+    @media (max-width : 1000px) {
+      padding-top: 10px;
+      font-size: 16px;
+    }
+  }
+  .pmx-media-description{
+    margin-left: 10px;
+    color: white;
+  }
+}
+
+/*  CONTACT
+**************/
+.pmx-form {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+.pmx-fieldset {
+  position:relative;
+
+  display: inline-block;
+  border:none;
+  margin: 5px 0 5px 0;
+  width: 100%;
+
+  font-family:arial,sans-serif;
+}
+
+textarea.pmx-input{
+  min-height: 80px;
+}
+
+.pmx-input{
+  padding:1.6em 1em .8em 1em;
+  @include size(100%, 45px);
+  box-sizing: border-box;
+  border:1px solid $white;
+  border-radius: $radius;
+
+  font-size:0.9em;
+  color: $white;
+  background-color: $black;
+
+  &:focus{
+    outline:none;
+    background: lighten( $black, 10% );
+  }
+}
+
+.pmx-fieldset .pmx-input + .pmx-label{
+  @extend %align-v;
+  left:10px;
+
+  display:block;
+
+  cursor:text;
+  color: $white;
+
+  transition:.15s ease-out all;
+}
+
+.pmx-fieldset .pmx-input:focus + .pmx-label,
+.pmx-fieldset .pmx-label.stay {
+  top: 15px;
+  left: 13px;
+  font-size:.7em;
+  font-weight:bold;
+  color: $orange;
+  transition:.15s ease-out all;
+}
+
+
+
+#contact-send-msg{
+  float: right;
+  margin: 20px 0;
+}
+
+
+#msg-result{
+  text-align: center;
+}
+
+.pmx-success{
+  color: $green;
+}
+
+.pmx-error{
+  color: $red;
+}

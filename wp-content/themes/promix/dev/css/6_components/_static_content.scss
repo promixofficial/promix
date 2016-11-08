@@ -1,0 +1,139 @@
+/*********************************
+    MODAL
+*********************************/
+.pmx-modal{
+  display: none;
+  .icon{
+    position: fixed;
+    right: 10px;
+    z-index: 1;
+    cursor: pointer;
+    font-size: 22px;
+  }
+  .icon-cancel{
+    top: 10px;
+    font-size: 35px;
+  }
+  .icon-zoom-in{
+    top: 90px;
+  }
+  .icon-zoom-out{
+    top: 130px;
+  }
+  .pmx-modal-background{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    background-color: $modal-background-color;
+  }
+
+  .pmx-modal-container{
+    @extend %align-middle;
+    transition: transform 0.3s ease;
+  }
+  .loading{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.5);
+  }
+}
+/*********************************
+    MEDIA CONTAINER
+*********************************/
+
+.pmx-media-list{
+  width: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  &.pmx-row-3 {
+    @include desktop-only{
+      justify-content: space-around;
+    }
+    .pmx-media-item{
+      @include desktop-only{
+        width: 30%;
+      }
+      @include mobile-only{
+        width: 45%;
+      }
+      @media (max-width : 450px) {
+        width: 100%;
+      }
+    }
+  }
+  &.pmx-row-4{
+    @include desktop-only{
+      justify-content: space-around;
+    }
+    .pmx-media-item{
+      @include desktop-only{
+        width: 23%;
+      }
+      @media (max-width : 1060px) {
+        width: 30%;
+      }
+      @media (max-width : 660px) {
+        width: 44%;
+      }
+      @media (max-width : 450px) {
+        width: 100%;
+      }
+    }
+  }
+  &.pmx-row-5 {
+    @include desktop-only{
+      justify-content: space-around;
+    }
+    .pmx-media-item{
+      @include desktop-only{
+        width: 18%;
+      }
+      @media (max-width : 1060px) {
+        width: 22%;
+      }
+      @include mobile-only{
+        width: 30%;
+      }
+      @media (max-width : 660px) {
+        width: 44%;
+      }
+      @media (max-width : 450px) {
+        width: 100%;
+      }
+    }
+  }
+  .pmx-media-item{
+    padding: 10px;
+    margin-bottom: 50px;
+    text-align: center;
+    transition: width 0.3s ease, background-color 0.8s;
+  }
+  .pmx-media-figure[data-url]{
+    cursor: pointer;
+  }
+  .pmx-media-face{
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 250px;
+  }
+  .pmx-media-caption{
+
+  }
+  .pmx-media-title{
+    font-size: 25px;
+  }
+  .pmx-media-description{
+    text-align: justify;
+  }
+}

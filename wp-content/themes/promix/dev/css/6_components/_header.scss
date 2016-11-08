@@ -1,0 +1,63 @@
+.main-header{
+  position: relative;
+  max-width: $page-max-width;
+}
+
+.header-banner{
+  position: relative;
+  .social-list{
+    position: absolute;
+
+    display: inline-block;
+    padding: 0 10px;
+
+    transition: all 0.8s;
+
+    .social-list-item{
+      font-size: 26px;
+      transition: opacity 0.3s ease;
+      &:hover{
+        opacity: 0.5;
+      }
+    }
+
+    @include desktop-only{
+      top: 0;
+      left: 0;
+
+      background-color: rgba(105,105,105,0.5);
+    }
+
+    @include mobile-only{
+      top: 100%;
+      left: $header-social-width;
+      z-index: 65;
+
+      background-color: transparent;
+    }
+
+  }
+}
+
+.header-banner-image{
+  width: 100%;
+}
+
+.header-logo{
+  @extend %align-middle;
+  width: 40%;
+  transition: width 0.5s;
+}
+
+.header-slogan{
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 18px;
+  font-family: 'Cookie', cursive;
+
+  transition: opacity 0.5s;
+  @include mobile-only{
+    opacity: 0;
+  }
+}

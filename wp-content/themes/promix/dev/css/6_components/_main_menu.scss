@@ -1,0 +1,91 @@
+.main-menu{
+  z-index: 60;
+  margin-top: -5px;
+  .main-menu-trigger-check{
+    display: none;
+    @include mobile-only{
+      &:checked + .main-menu-trigger{
+        opacity: 0.75;
+        + .menu-main-menu-container {
+          #menu-main-menu {
+            height: $main-menu-height;
+          }
+        }
+      }
+    }
+  }
+
+
+  @include mobile-only{
+    position: absolute;
+    top: 100%;
+    width: calc(100% - 20px);
+
+    .main-menu-trigger{
+      display: block;
+      padding: 10px;
+      transition: opacity 0.5s ease;
+      background-color: $gray;
+      .icon{
+
+      }
+    }
+  }
+  @include desktop-only{
+    .main-menu-trigger{
+      display: none;
+    }
+  }
+  #menu-main-menu{
+    width: 100%;
+    @include desktop-only{
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-around;
+    }
+    @include mobile-only{
+      height: 0;
+      overflow: hidden;
+
+      transition: height 0.5s;
+    }
+    .menu-item{
+      border: 1px solid black;
+
+      background-color: $black;
+
+      transition: background-color 0.5s;
+      &:hover{
+        cursor: pointer;
+        background-color: $orange;
+      }
+
+      @include desktop-only{
+        width: 100%;
+        text-align: center;
+      }
+
+      @include mobile-only{
+        padding-left: 10px;
+      }
+
+      a{
+        display: inline-block;
+        width: 100%;
+        padding: 10px 0;
+
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .current_page_item{
+    background-color: $orange !important;
+    pointer-events: none !important;
+  }
+}

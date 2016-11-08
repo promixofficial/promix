@@ -1,0 +1,20 @@
+// calcule units in rem from px values
+@function rem($pxs) {
+
+  $list: ();
+
+  @each $px in $pxs {
+
+    @if($px != 'auto') {
+      $list: append($list, ($px/$font-size) + rem);
+    }
+
+    @else {
+      $list: append($list, $px);
+    }
+
+  }
+
+  @return $list;
+
+}
