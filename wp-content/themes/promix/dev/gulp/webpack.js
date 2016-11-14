@@ -11,9 +11,13 @@ gulp.task("webpack", function(callback) {
                 path: "./../",
                 filename: `script.js`
             },
-            
-            devtool: 'source-map',
-            
+
+            cache: true,
+            //watch: true,
+
+            //devtool: 'eval',
+            //devtool: 'source-map',
+
             plugins: [
                 new webpack.optimize.UglifyJsPlugin({minimize: true})
             ],

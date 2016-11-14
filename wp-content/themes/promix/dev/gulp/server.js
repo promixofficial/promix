@@ -3,11 +3,12 @@ var gulp = require('gulp'),
 
 
 gulp.task('server', function() {
+
     var sources = [
-        './../**/*.php',
-        './../**/*.css',
-        './../**/*.js',
-        '!.*/dev/**/*.*'
+        `!./../dev/`,
+        `./../*.php`,
+        `./../*.css`,
+        `./../*.js`
     ];
 
     var server = gls.static('./',process.env.PORT, process.env.IP);
