@@ -1,6 +1,9 @@
 </main><!-- main-content -->
 </section><!-- main-container -->
 
+<div class="back-to-top" onclick="jQuery('head').goTo();" >
+    <i class="icon icon-up-open"></i>
+</div>
 
 <footer class="main-footer" >
 

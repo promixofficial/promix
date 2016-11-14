@@ -5,7 +5,23 @@
         }, 'fast');
         return this;
     }
+
+
+    var offset = 250;
+    var duration = 300;
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > offset) {
+            $('.back-to-top').stop().fadeIn(duration);
+        } else {
+            $('.back-to-top').stop().fadeOut(duration);
+        }
+    });
+
 })(jQuery);
+
+
+
+
 
 
 

@@ -1,3 +1,20 @@
+.back-to-top{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 25;
+  @include size(35px);
+  border-radius: 50px;
+  text-align: center;
+  background-color: $gray;
+  cursor: pointer;
+  .icon{
+    position: relative;
+    top: 5px;
+  }
+}
+
+
 .main-footer{
   position: absolute;
   bottom: 0;
