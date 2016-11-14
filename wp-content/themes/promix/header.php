@@ -40,7 +40,11 @@
         <nav class="main-menu" >
             <input type="checkbox" id="main-menu-check" name="main-menu-check" class="main-menu-trigger-check" />
             <label class="main-menu-trigger" for="main-menu-check" >
-                <i class="icon icon-menu" ></i>
+                <div class="menu-trigger-icon" >
+                    <div class="menu-trigger-bar" ></div>
+                    <div class="menu-trigger-bar" ></div>
+                    <div class="menu-trigger-bar" ></div>
+                </div>
             </label>
             <?php wp_nav_menu(array('theme_location' => 'header-menu')) ?>
             <!--ul class="main-menu-list active-home" >

@@ -11,6 +11,24 @@
             height: $main-menu-height;
           }
         }
+
+        .menu-trigger-icon{
+
+        }
+        .menu-trigger-bar{
+          border-radius: 50px;
+          &:first-child{
+            transform: rotate(135deg) translate(4px, -4px);
+          }
+          &:nth-child(2){
+            transform-origin: center;
+            transform: scale(0);
+          }
+          &:last-child{
+            transform: rotate(-135deg) translate(6px,6px);
+          }
+        }
+
       }
     }
   }
@@ -26,8 +44,18 @@
       padding: 10px;
       transition: opacity 0.5s ease;
       background-color: $gray;
-      .icon{
-
+      height: 22px;
+      .menu-trigger-icon{
+        display: inline-block;
+        height: 22px;
+        width: 22px;
+      }
+      .menu-trigger-bar{
+        height: 3px;
+        width: 100%;
+        margin: 4px 0;
+        background-color: $white;
+        transition: all 0.5s ease;
       }
     }
   }
