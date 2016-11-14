@@ -3,6 +3,10 @@
 
 <?php
 
+foreach (get_categories() as $category){
+    echo $category->id;
+};
+
 while ( have_posts() ) : the_post(); ?>
 
 
