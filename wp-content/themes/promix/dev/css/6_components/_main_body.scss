@@ -1,3 +1,16 @@
+#breadcrumbs{
+  font-size: rem(12);
+  @include mobile-only{
+    font-size: rem(10);
+  }
+  a {
+    color: $white;
+  }
+  .breadcrumb_last{
+    pointer-events: none;
+    font-weight: bold;
+  }
+}
 
 
 /***************************
