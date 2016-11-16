@@ -1,4 +1,4 @@
-#breadcrumbs{
+.pmx-breadcrumbs{
   font-size: rem(12);
   opacity: 0.7;
   @include mobile-only{
@@ -10,6 +10,34 @@
   .breadcrumb_last{
     pointer-events: none;
     font-weight: bold;
+  }
+}
+
+.pmx-post-list{
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  .pmx-post-list-item{
+    max-width: 50%;
+    &:hover{
+      text-decoration: underline;
+      opacity: 0.5;
+    }
+    &:last-child{
+      text-align: right;
+    }
+    a{
+      color: $orange;
+      text-decoration: none;
+    }
+    .icon{
+      margin: -7px;
+    }
+    .pmx-post-list-title{
+      color: $white;
+      font-size: rem(12);
+      opacity: 0.75;
+    }
   }
 }
 
