@@ -84,7 +84,7 @@
     HEADERS
 ***************************/
 .pmx-h1{
-  padding-left: 10px;
+  margin: 20px 0;
   font-size: $font-size-title;
   @include mobile-only{
     text-align: center;

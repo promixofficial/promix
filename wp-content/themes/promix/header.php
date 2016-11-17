@@ -18,7 +18,6 @@
 
     <link rel="icon" href="<?php bloginfo('template_directory') ?>/images/favicon.ico">
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url') ?>">
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/font/fontello/css/fontello.css">
     <link href='https://fonts.googleapis.com/css?family=Cookie|Sarina|Merienda' rel='stylesheet' type='text/css'>
