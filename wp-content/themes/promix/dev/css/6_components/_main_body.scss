@@ -13,7 +13,7 @@
   }
 }
 
-.pmx-post-list{
+.pmx-post-list-nav{
   margin-top: 40px;
   display: flex;
   justify-content: space-between;
@@ -37,6 +37,90 @@
       color: $white;
       font-size: rem(12);
       opacity: 0.75;
+    }
+  }
+}
+
+
+.pmx-post-list{
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  .pmx-post-list-item{
+    &:hover{
+      .pmx-post-preview-excerpt {
+        text-decoration: underline;
+        opacity: 0.5;
+      }
+    }
+    a{
+      text-decoration: none;
+      color: $white;
+    }
+    .pmx-post-preview-title{
+      font-size: rem(21);
+    }
+    .pmx-post-list-thumbnail{
+      width: 100%;
+    }
+    .pmx-post-preview-title, .pmx-post-preview-excerpt{
+      word-break: normal;
+    }
+    .pmx-post-preview-excerpt{
+      font-size: rem(14);
+    }
+  }
+  &.pmx-small-list{
+    justify-content: flex-start;
+    .pmx-post-list-item{
+      width: 100%;
+      margin-bottom: 20px;
+      &:not(:first-child){
+        .pmx-post-list-thumbnail{
+          width: 40%;
+        }
+        .pmx-post-preview-excerpt{
+          display: none;
+        }
+        .pmx-post-preview-title{
+          display: inline-block;
+          width: 58%;
+          vertical-align: top;
+          color: $white;
+          font-family: "Roboto";
+          font-size: rem(14);
+        }
+      }
+    }
+  }
+  &.pmx-full-page-list{
+    justify-content: flex-start;
+    .pmx-post-list-item{
+      margin-right: 20px;
+      margin-bottom: 50px;
+      @media only screen and (min-width : 1075px) {
+        flex-basis: calc((100%/4 - 20px) + (20px/4));
+        &:nth-child(4n){
+          margin-right: 0;
+        }
+      }
+      @media only screen and (max-width : 1074px) and (min-width: 886px){
+        flex-basis: calc((100%/3 - 20px) + (20px/3));
+        &:nth-child(3n){
+          margin-right: 0;
+        }
+      }
+      @media only screen and (max-width : 885px) and (min-width : 470px) {
+        flex-basis: calc((100%/2 - 20px) + (20px/2));
+        &:nth-child(2n){
+          margin-right: 0;
+        }
+      }
+      @media only screen and (max-width : 469px) {
+        flex-basis: calc((100%/1));
+        margin-right: 0;
+      }
+
     }
   }
 }
@@ -92,7 +176,7 @@
 }
 
 .pmx-h2{
-  font-size: $font-size-title;
+  font-size: $font-size-title2;
 }
 
 .pmx-h1, .pmx-h2{

@@ -20,7 +20,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url') ?>">
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/font/fontello/css/fontello.css">
-    <link href='https://fonts.googleapis.com/css?family=Cookie|Sarina|Merienda' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Cookie|Sarina|Merienda|Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body>
 

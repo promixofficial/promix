@@ -1,13 +1,10 @@
 <?php
-
 /* Template Name: Manga */
 
 get_header();
 
-
 $args = array('category_name' => 'manga');
 $qry = new WP_Query($args);
-
 
 if ( function_exists('yoast_breadcrumb') ) {
     yoast_breadcrumb('<p class="pmx-breadcrumbs">','</p>');
@@ -15,33 +12,28 @@ if ( function_exists('yoast_breadcrumb') ) {
 
 ?>
 
-    <header class="archive-header">
-        <h1 class="archive-title pmx-h1">Mangá</h1>
-    </header>
 
-    <section id="primary" class="site-content">
-        <div id="content" role="main">
-            <?php
-            // Check if there are any posts to display
-            if ( $qry->have_posts() ) : ?>
+<h1 class="pmx-h1">Mangá</h1>
 
-
-                <?php
-
-                while ( $qry->have_posts() ) : $qry->the_post(); ?>
-                    <article>
-                        <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-                        <div class="entry">
-                            <?php the_excerpt(); ?>
-                        </div>
+<section class="pmx-page-posts">
+    <?php if ( $qry->have_posts() ) : ?>
+        <ul class="pmx-post-list pmx-full-page-list">
+            <?php while ( $qry->have_posts() ) : $qry->the_post(); ?>
+                <li class="pmx-post-list-item">
+                    <article class="pmx-post-preview" >
+                        <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
+                            <?php the_post_thumbnail( 'full', array('class'=>'pmx-post-list-thumbnail') ); ?>
+                            <h2 class="pmx-post-preview-title pmx-h2" ><?php the_title(); ?></h2>
+                            <div class="pmx-post-preview-excerpt">
+                                <?php the_excerpt(); ?>
+                            </div>
+                        </a>
                     </article>
-                <?php endwhile; // End Loop
-
-            else: ?>
-                <p>Sorry, no posts matched your criteria.</p>
-            <?php endif; ?>
-        </div>
-    </section>
+                </li>
+            <?php endwhile; ?>
+        </ul>
+    <?php endif; ?>
+</section>
 
 
 <?php get_footer(); ?>

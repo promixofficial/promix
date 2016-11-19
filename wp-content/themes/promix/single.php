@@ -22,7 +22,7 @@ while ( have_posts() ) : the_post(); ?>
 
 <?php endwhile; ?>
 
-<ul class="pmx-post-list" >
+<ul class="pmx-post-list-nav" >
     <li class="pmx-post-list-item">
         <?php previous_post_link('%link', '<div class="pmx-post-link" ><i class="icon icon-left-open"></i> Anterior<br><span class="pmx-post-list-title" >%title</span></div>', true); ?>
     </li>
