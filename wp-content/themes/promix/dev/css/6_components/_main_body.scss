@@ -163,6 +163,12 @@
     }
     @media only screen and (min-width : 424px) and (max-width: 550px){
       .pmx-post-list-item{
+        &:nth-child(1), &:nth-child(2){
+          width: 100%;
+          .pmx-post-preview-title{
+            font-size: rem(14);
+          }
+        }
         width: calc(50% - 2px);
         .pmx-post-preview-title{
           font-size: rem(10);
