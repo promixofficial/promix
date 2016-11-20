@@ -15,8 +15,13 @@
 
 .pmx-post-list-nav{
   margin-top: 40px;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
+  border-top: 2px solid $gray;
+  &:not(:last-child){
+    border-bottom: 2px solid $gray;
+  }
   .pmx-post-list-item{
     max-width: 50%;
     &:hover{
