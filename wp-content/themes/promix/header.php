@@ -32,7 +32,9 @@
         <div class="header-banner" >
             <?php get_template_part('partials/social_networks_list') ?>
             <img class="header-banner-image" alt="Pro-MIX Sunset" src="<?php bloginfo('template_directory') ?>/images/promix_cover_sunset.png" />
-            <img class="header-logo" alt="Pro-MIX Logo" src="<?php bloginfo('template_directory') ?>/images/promix_logo.svg" />
+            <a href="<?php echo get_home_url(); ?>">
+                <img class="header-logo" alt="Pro-MIX Logo" title="Pro-MIX プロミックス" src="<?php bloginfo('template_directory') ?>/images/promix_logo.svg" />
+            </a>
             <span class="header-slogan" >The best things in life are free.</span>
         </div>
 
