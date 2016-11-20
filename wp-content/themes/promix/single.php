@@ -1,6 +1,6 @@
-<?php get_header();
+<?php
 
-
+get_header();
 
 if ( function_exists('yoast_breadcrumb') ) {
     yoast_breadcrumb('<p class="pmx-breadcrumbs">','</p>');
@@ -8,7 +8,6 @@ if ( function_exists('yoast_breadcrumb') ) {
 
 
 while ( have_posts() ) : the_post(); ?>
-
 
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <header class="entry-header">
@@ -18,7 +17,6 @@ while ( have_posts() ) : the_post(); ?>
             <?php the_content(); ?>
         </div>
     </article><!-- #post-## -->
-
 
 <?php endwhile; ?>
 
@@ -31,7 +29,4 @@ while ( have_posts() ) : the_post(); ?>
     </li>
 </ul>
 
-
-
-
-<?php get_footer(); ?>
+<?php get_footer(); ///TODO https://wordpress.org/plugins/related-posts-for-wp/  ?>

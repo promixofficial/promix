@@ -112,8 +112,9 @@
     }
   }
 
-  .current_page_item{
+  .current_page_item, .current-menu-item{
     background-color: $orange !important;
     pointer-events: none !important;
   }
 }
+
