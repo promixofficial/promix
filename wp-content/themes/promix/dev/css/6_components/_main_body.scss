@@ -99,6 +99,27 @@
   }
 }
 
+
+.pmx-related-posts{
+  margin-top: 10px;
+  &:not(:last-child){
+    .pmx-post-list{
+      border-bottom: 2px solid $orange;
+    }
+  }
+  & > .pmx-h3{
+    display: inline-block;
+    padding: 10px;
+    color: $white;
+    background-color: $orange;
+    font-size: rem(12);
+  }
+  .pmx-post-list{
+    margin-top: 0;
+    padding-top: 20px;
+    border-top: 2px solid $orange;
+  }
+}
 .pmx-post-list{
   margin-top: 40px;
   display: flex;

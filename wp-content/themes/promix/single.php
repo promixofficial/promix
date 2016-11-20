@@ -29,4 +29,13 @@ while ( have_posts() ) : the_post(); ?>
     </li>
 </ul>
 
-<?php get_footer(); ///TODO https://wordpress.org/plugins/related-posts-for-wp/  ?>
+<?php
+
+if ( function_exists('rp4wp_children') ) {
+    rp4wp_children();
+}
+
+
+get_footer();
+
+?>

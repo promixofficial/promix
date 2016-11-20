@@ -48,29 +48,6 @@
                 </div>
             </label>
             <?php wp_nav_menu(array('theme_location' => 'header-menu')) ?>
-            <!--ul class="main-menu-list active-home" >
-                <li class="main-menu-item item-home pmx-material-button" >
-                    <a href="index.html" class="list-item-link pmx-material-label" >Home</a>
-                </li>
-                <li class="main-menu-item item-jogos pmx-material-button" >
-                    <a href="jogos.html" class="list-item-link pmx-material-label" >Jogos</a>
-                </li>
-                <li class="main-menu-item item-manga pmx-material-button" >
-                    <a href="manga.html" class="list-item-link pmx-material-label" >Mangá</a>
-                </li>
-                <!--li class="main-menu-item item-quadrinhos pmx-material-button" >
-                    <a href="quadrinhos.html" class="list-item-link pmx-material-label" >Quadrinhos</a>
-                </li-->
-                <!--li class="main-menu-item item-ilustracoes pmx-material-button" >
-                    <a href="ilustracoes.html" class="list-item-link pmx-material-label" >Ilustrações</a>
-                </li>
-                <li class="main-menu-item item-japones pmx-material-button" >
-                    <a href="japones.html" class="list-item-link pmx-material-label" >Japonês</a>
-                </li>
-                <li class="main-menu-item item-contato pmx-material-button" >
-                    <a href="contato.html" class="list-item-link pmx-material-label" >Contato</a>
-                </li>
-            </ul-->
         </nav>
     </header>
 
