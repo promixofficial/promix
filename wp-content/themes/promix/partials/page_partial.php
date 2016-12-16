@@ -23,9 +23,20 @@ if ( function_exists('yoast_breadcrumb') ) {
 
 <h1 class="pmx-h1"><?php echo $pageTitle; ?></h1>
 
+<div class="pmx-list-view-toggle-container">
+    <div class="pmx-list-view-toggle list-view-mode" >
+        <div class="pmx-list-view-toggle-component" ></div>
+        <div class="pmx-list-view-toggle-component" ></div>
+        <div class="pmx-list-view-toggle-component" ></div>
+        <div class="pmx-list-view-toggle-component" ></div>
+        <div class="pmx-list-view-toggle-component" ></div>
+        <div class="pmx-list-view-toggle-component" ></div>
+    </div>
+</div>
+
 <section class="pmx-page-posts">
     <?php if ( $qry->have_posts() ) : ?>
-        <ul class="pmx-post-list pmx-full-page-list">
+        <ul class="pmx-post-list pmx-full-page-list list-view-mode">
             <?php include(locate_template('partials/post_list_items.php')); ?>
         </ul>
     <?php endif; ?>

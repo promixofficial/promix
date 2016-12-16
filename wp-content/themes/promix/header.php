@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" id="viewport" content="initial-scale=1; maximum-scale=1; user-scalable=0;">
+    <meta name="viewport" id="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=0">
 
     <meta name="description" itemprop="description" content="Pro-MIX - Jogos Online, Aulas de Japonês e Mangá">
     <meta name="keywords" itemprop="keywords" content="manga, draw, jogos, games, online, japones, japanese, tutorial">

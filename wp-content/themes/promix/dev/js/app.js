@@ -31,6 +31,7 @@
 
     var App = {
         start: function(){
+            View.Lists.startViewMode();
             if(this.Location.isJogos()){
                 View.Games.startTriggers();
             }
@@ -44,10 +45,9 @@
                 View.Contact.startForm();
                 View.Inputs.startLabels();
             }
-            View.Button.effectStart();
-            View.MainMenu.startTrigger();
-            View.Window.onResize();
-            View.Window.startFeaturedElement();
+            $('.pmx-list-view-toggle').on('click', function(){
+                View.Lists.toggleListViewMode();
+            })
         },
         Email: {
             send: function(){
@@ -192,30 +192,6 @@
     }
 
     var View = {
-        Button: {
-            effectStart: function(){
-                $(".pmx-material-button .pmx-material-label").click(function(e){
-                    var element, circle, d, x, y;
-                    element = $(this);
-
-                    if(element.find(".circle").length == 0)
-                        element.prepend("<span class='circle'></span>");
-
-                    circle = element.find(".circle");
-                    circle.removeClass("animate");
-
-                    if(!circle.height() && !circle.width()){
-                        d = Math.max(element.outerWidth(), element.outerHeight());
-                        circle.css({height: d, width: d});
-                    }
-
-                    x = e.pageX - element.offset().left - circle.width()/2;
-                    y = e.pageY - element.offset().top - circle.height()/2;
-
-                    circle.css({top: y+'px', left: x+'px'}).addClass("animate");
-                });
-            }
-        },
         Contact: {
             startForm: function(){
                 $('#contact-form').submit(function( event ) {
@@ -316,44 +292,30 @@
             }
         },
 
-        MainMenu: {
-            selector: ".main-menu-trigger",
-            startTrigger: function(){
-                $(this.selector).on("click", function(){
-                    $(this).toggleClass('pmx-active');
-                });
-            },
-            open: function(){
-                $(this.selector).addClass('pmx-active');
-            },
-            close: function(){
-                $(this.selector).removeClass('pmx-active');
-            }
-        },
-        Window: {
-            onResize: function(){
-                $(window).on('resize', function(){
-                    View.MainMenu.close();
-                });
-            },
-            featuredElement: function(elementSelector){
-                var element = $(elementSelector);
-                if(element.length){
-                    element.goTo().css({"background-color": "rgba(252, 96, 0, 0.30)"});
-                    setTimeout(function(){element.css({"background-color": ""});},1000);
+        Lists : {
+            startViewMode: function(){
+                if(localStorage['pmx-list-view-mode'] === 'list'){
+                    this.setListViewMode();
+                }else{
+                    this.setGridViewMode();
                 }
             },
-            getParameterByName: function (name) {
-                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                    results = regex.exec(location.search);
-                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-            },
-            startFeaturedElement: function(){
-                var elementId = this.getParameterByName('pmx');
-                if(elementId){
-                    this.featuredElement('#'+elementId);
+            toggleListViewMode: function(){
+                if(localStorage['pmx-list-view-mode'] === 'grid'){
+                    this.setListViewMode();
+                }else{
+                    this.setGridViewMode();
                 }
+            },
+            setListViewMode: function(){
+                localStorage['pmx-list-view-mode'] = 'list';
+                $('.pmx-post-list').addClass('list-view-mode').removeClass('grid-view-mode');
+                $('.pmx-list-view-toggle').addClass('grid-view-mode').removeClass('list-view-mode').attr('title', 'Posts em Grade');
+            },
+            setGridViewMode: function(){
+                localStorage['pmx-list-view-mode'] = 'grid';
+                $('.pmx-post-list').addClass('grid-view-mode').removeClass('list-view-mode');
+                $('.pmx-list-view-toggle').addClass('list-view-mode').removeClass('grid-view-mode').attr('title', 'Posts em Lista');
             }
         }
     };

@@ -27,6 +27,8 @@ $radius: 3px;
 $mq-mobile  : 768px !default;
 $page-max-width: 1200px;
 
-$main-menu-height: 330px;
+$main-menu-item-number: 6;
+$main-menu-item-height: 44px;
+$main-menu-height: $main-menu-item-height * $main-menu-item-number;
 $header-social-width: calc(100% - 180px);
 $footer-height: 240px;

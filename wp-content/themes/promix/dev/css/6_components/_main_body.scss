@@ -264,6 +264,14 @@
   }
   &.pmx-full-page-list{
     justify-content: flex-start;
+    &.list-view-mode{
+      .pmx-post-list-item{
+        margin-bottom: 20px !important;
+        .pmx-post-list-thumbnail{
+          display: none !important;
+        }
+      }
+    }
     .pmx-post-list-item{
       margin-right: 20px;
       margin-bottom: 50px;
@@ -294,7 +302,54 @@
   }
 }
 
+.pmx-list-view-toggle-container{
+  position: absolute;
+  top: 8px;
+  right: 5px;
+}
 
+.pmx-list-view-toggle{
+  position: relative;
+  height: 32px;
+  width: 40px;
+  display: inline-block;
+  line-height: 0;
+  cursor: pointer;
+  overflow: hidden;
+  &:hover .pmx-list-view-toggle-component{
+    opacity: 0.75;
+  }
+  .pmx-list-view-toggle-component{
+    display: inline-block;
+    position: relative;
+    background-color: $orange;
+    transition: all 0.5s ease;
+  }
+  &.list-view-mode{
+    .pmx-list-view-toggle-component{
+      width: calc(100% - 11px);
+      height: 7px;
+      margin-bottom: 5px;
+      &:nth-child(2n - 1){
+        width: 7px;
+      }
+    }
+  }
+  &.grid-view-mode{
+    .pmx-list-view-toggle-component{
+      position: relative;
+      left: 7px;
+      top: 2px;
+      width: 12px;
+      height: 12px;
+      margin-bottom: 5px;
+      &:nth-child(5n), &:nth-child(6n){
+        height: 0;
+        opacity: 0;
+      }
+    }
+  }
+}
 /***************************
     CONTAINERS
 ***************************/
@@ -320,6 +375,7 @@
 }
 
 .main-content{
+  position: relative;
   border: 1px solid $white;
   border-radius: $radius;
   padding: 10px;
