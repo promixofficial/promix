@@ -29,7 +29,7 @@ class RP4WP_Filter_After_Post extends RP4WP_Filter {
 		}
 
 		// Allow disabling content filter
-		if ( false === apply_filters( 'rp4wp_append_content', true ) ) {
+		if ( apply_filters( 'rp4wp_append_content', true ) ) {
 			return $content;
 		}
 

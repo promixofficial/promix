@@ -249,42 +249,6 @@ class RP4WP_Post_Link_Manager {
 		return $children;
 	}
 
-
-	/**
-	 * Get parents based on link_id and child_id.
-	 *
-	 * @access public
-	 *
-	 * @param int $child_id
-	 *
-	 * @return array
-	 */
-	public function get_parents( $child_id ) {
-
-		// build link args
-		$link_args = $this->create_link_args( RP4WP_Constants::PM_CHILD, $child_id );
-		$link_args['fields'] = 'ids';
-
-		/**
-		 * Filter args for link query
-		 */
-		$link_args = apply_filters( 'rp4wp_get_parents_link_args', $link_args, $child_id );
-
-		// Create link query
-		$wp_query = new WP_Query();
-		$link_post_ids = $wp_query->query( $link_args );
-
-		$parents = array();
-		if ( ! empty( $link_post_ids ) ) {
-			foreach ( $link_post_ids as $link_post_id ) {
-				// Add post to correct original sort key
-				$parents[ $link_post_id ] = get_post( get_post_meta( $link_post_id, RP4WP_Constants::PM_PARENT, true ) );
-			}
-		}
-
-		return $parents;
-	}
-
 	/**
 	 * Custom sort method to reorder children
 	 *
@@ -384,7 +348,7 @@ class RP4WP_Post_Link_Manager {
 		if ( count( $related_posts ) > 0 ) {
 
 			// The rp4wp block
-			$content .= "<div class='rp4wp-related-posts'>\n";
+			$content .= "<div class='pmx-page-posts pmx-related-posts'>\n";
 
 			// Get the heading text
 			$heading_text = RP4WP::get()->settings->get_option( 'heading_text' );
@@ -393,14 +357,14 @@ class RP4WP_Post_Link_Manager {
 			if ( '' != $heading_text ) {
 
 				// Add heading text plus heading elements
-				$heading_text = '<h3>' . $heading_text . '</h3>' . PHP_EOL;
+				$heading_text = '<h3 class="pmx-h3" >' . $heading_text . '</h3>' . PHP_EOL;
 			}
 
 			// Filter complete heading
 			$content .= apply_filters( 'rp4wp_heading', $heading_text );
 
 			// Open the list
-			$content .= "<ul>\n";
+			$content .= "<ul class='pmx-post-list pmx-full-page-list' >\n";
 
 
 			foreach ( $related_posts as $rp4wp_post ) {
@@ -409,7 +373,7 @@ class RP4WP_Post_Link_Manager {
 				setup_postdata( $rp4wp_post );
 
 				// Output the linked post
-				$content .= "<li>";
+				$content .= "<li class='pmx-post-list-item' >";
 
 				if ( 1 == RP4WP::get()->settings->get_option( 'display_image' ) ) {
 					if ( has_post_thumbnail( $rp4wp_post->ID ) ) {
@@ -423,19 +387,19 @@ class RP4WP_Post_Link_Manager {
 
 						$content .= "<div class='rp4wp-related-post-image'>" . PHP_EOL;
 						$content .= "<a href='" . get_permalink( $rp4wp_post->ID ) . "'>";
-						$content .= get_the_post_thumbnail( $rp4wp_post->ID, $thumb_size );
+						$content .= get_the_post_thumbnail( $rp4wp_post->ID, $thumb_size, array('class'=>'pmx-post-list-thumbnail') );
 						$content .= "</a>";
 						$content .= "</div>" . PHP_EOL;
 					}
 				}
 
 				$content .= "<div class='rp4wp-related-post-content'>" . PHP_EOL;
-				$content .= "<a href='" . get_permalink( $rp4wp_post->ID ) . "'>" . apply_filters( 'rp4wp_post_title', $rp4wp_post->post_title, $rp4wp_post ) . "</a>";
+				$content .= "<a href='" . get_permalink( $rp4wp_post->ID ) . "'><h2 class='pmx-post-preview-title pmx-h2' >" . apply_filters( 'rp4wp_post_title', $rp4wp_post->post_title, $rp4wp_post ) . "</h2></a>";
 
 				$excerpt_length = RP4WP::get()->settings->get_option( 'excerpt_length' );
 				if ( $excerpt_length > 0 ) {
 					$excerpt = wp_trim_words( strip_tags( strip_shortcodes( ( ( '' != $rp4wp_post->post_excerpt ) ? $rp4wp_post->post_excerpt : $rp4wp_post->post_content ) ) ), $excerpt_length );
-					$content .= "<p>" . apply_filters( 'rp4wp_post_excerpt', $excerpt, $rp4wp_post->ID ) . "</p>";
+					$content .= "<div class='pmx-post-preview-excerpt' >" . apply_filters( 'rp4wp_post_excerpt', $excerpt, $rp4wp_post->ID ) . "</div>";
 				}
 
 				$content .= "</div>" . PHP_EOL;

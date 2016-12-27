@@ -19,17 +19,17 @@ class RP4WP_Related_Post_Manager {
 
 		// Build SQl
 		$sql = "
-		SELECT P.`ID`, P.`post_title`, ( SUM( O.`weight` ) *  SUM( R.`weight` ) ) AS `CMS`
+		SELECT P.`ID`, P.`post_title`, SUM( R.`weight` ) AS `related_weight`
 		FROM `" . RP4WP_Related_Word_Manager::get_database_table() . "` O
 		INNER JOIN `" . RP4WP_Related_Word_Manager::get_database_table() . "` R ON R.`word` = O.`word`
 		INNER JOIN `" . $wpdb->posts . "` P ON P.`ID` = R.`post_id`
 		WHERE 1=1
 		AND O.`post_id` = %d
-		AND R.`post_type` = %s
+		AND R.`post_type` = 'post'
 		AND R.`post_id` != %d
 		AND P.`post_status` = 'publish'
 		GROUP BY P.`id`
-		ORDER BY `CMS` DESC
+		ORDER BY `related_weight` DESC
 		";
 
 		// Check & Add Limit
@@ -37,10 +37,10 @@ class RP4WP_Related_Post_Manager {
 			$sql .= "
 			LIMIT 0,%d";
 			// Prepare SQL
-			$sql = $wpdb->prepare( $sql, $post_id, get_post_type( $post_id ), $post_id, $limit );
+			$sql = $wpdb->prepare( $sql, $post_id, $post_id, $limit );
 		} else {
 			// Prepare SQL
-			$sql = $wpdb->prepare( $sql, $post_id, get_post_type( $post_id ), $post_id );
+			$sql = $wpdb->prepare( $sql, $post_id, $post_id );
 		}
 
 		// Get post from related cache
@@ -57,7 +57,7 @@ class RP4WP_Related_Post_Manager {
 	public function get_not_auto_linked_posts_ids( $limit ) {
 		return get_posts( array(
 			'fields'         => 'ids',
-			'post_type'      => RP4WP_Related_Post_Manager::get_supported_post_types(),
+			'post_type'      => 'post',
 			'posts_per_page' => $limit,
 			'post_status'    => 'publish',
 			'meta_query'     => array(
@@ -98,7 +98,7 @@ class RP4WP_Related_Post_Manager {
 	public function get_unlinked_post_count() {
 		global $wpdb;
 
-		$post_count = $wpdb->get_var( "SELECT COUNT(P.ID) FROM " . $wpdb->posts . " P LEFT JOIN " . $wpdb->postmeta . " PM ON (P.ID = PM.post_id AND PM.meta_key = '" . RP4WP_Constants::PM_POST_AUTO_LINKED . "') WHERE 1=1 AND P.post_type IN ('" . implode( "','", RP4WP_Related_Post_Manager::get_supported_post_types() ) . "') AND P.post_status = 'publish' AND PM.post_id IS NULL GROUP BY P.post_status" );
+		$post_count = $wpdb->get_var( "SELECT COUNT(P.ID) FROM " . $wpdb->posts . " P LEFT JOIN ".$wpdb->postmeta." PM ON (P.ID = PM.post_id AND PM.meta_key = '" . RP4WP_Constants::PM_POST_AUTO_LINKED . "') WHERE 1=1 AND P.post_type = 'post' AND P.post_status = 'publish' AND PM.post_id IS NULL GROUP BY P.post_status" );
 
 		if ( ! is_numeric( $post_count ) ) {
 			$post_count = 0;
@@ -141,10 +141,7 @@ class RP4WP_Related_Post_Manager {
 
 			// Set the correct ID's for batch meta insert
 			foreach ( $batch_data as $bk => $bd ) {
-				$batch_data[ $bk ]['meta'] = array_map( array(
-					$this,
-					'batch_data_set_pid'
-				), $bd['meta'], array_fill( 0, count( $bd['meta'] ), $pid ) );
+				$batch_data[$bk]['meta'] = array_map( array( $this, 'batch_data_set_pid' ), $bd['meta'], array_fill( 0, count( $bd['meta'] ), $pid ) );
 				$pid ++;
 			}
 
@@ -153,7 +150,7 @@ class RP4WP_Related_Post_Manager {
 				(`post_id`,`meta_key`,`meta_value`)
 				VALUES
 				" . implode( ',', array_map( array( $this, 'batch_data_get_meta' ), $batch_data ) ) . "
-				" );
+				");
 
 		}
 
@@ -187,7 +184,7 @@ class RP4WP_Related_Post_Manager {
 	 * @return string
 	 */
 	public function batch_data_get_meta( $batch ) {
-		return implode( ',', $batch['meta'] );
+		return implode(',',$batch['meta']);
 	}
 
 	/**
@@ -228,28 +225,6 @@ class RP4WP_Related_Post_Manager {
 
 		// Done
 		return true;
-	}
-
-	/**
-	 * Returns array with escaped supported post types
-	 * @return array
-	 */
-	public static function get_supported_post_types() {
-
-		// get post types
-		$post_types = apply_filters( 'rp4wp_supported_post_types', array( 'post' ) );
-
-		// at least 1 supported post type is needed
-		if ( ! is_array( $post_types ) || count( $post_types ) < 1 ) {
-			$post_types = array( 'post' );
-		}
-		
-		// escape values
-		foreach( $post_types as $pk => $pv ) {
-			$post_types[ $pk ] = esc_sql( $pv );
-		}
-
-		return $post_types;
 	}
 
 }

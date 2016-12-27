@@ -31,7 +31,7 @@ class RP4WP_Meta_Box_Manage {
 			'rp4wp_metabox_related_posts',
 			__( 'Related Posts', 'related-posts-for-wp' ),
 			array( $this, 'callback' ),
-			RP4WP_Related_Post_Manager::get_supported_post_types(),
+			'post',
 			'normal',
 			'core'
 		);
