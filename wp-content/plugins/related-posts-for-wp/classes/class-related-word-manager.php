@@ -338,6 +338,9 @@ class RP4WP_Related_Word_Manager {
 		// Check words
 		if ( is_array( $words ) && count( $words ) > 0 ) {
 
+			// get post type of given post
+			$post_type = get_post_type( $post_id );
+
 			// Delete all currents words of post
 			$this->delete_words( $post_id );
 
@@ -351,7 +354,7 @@ class RP4WP_Related_Word_Manager {
 				$params[] = $post_id;
 				$params[] = $word;
 				$params[] = $amount;
-				$params[] = 'post';
+				$params[] = $post_type;
 			}
 
 			// add VALUES pairs
@@ -378,13 +381,14 @@ class RP4WP_Related_Word_Manager {
 
 		$sql = "SELECT p.ID FROM {$wpdb->posts} p";
 		$sql .= " LEFT JOIN {$words_table} w ON w.post_id = p.ID";
-		$sql .= " WHERE p.post_type = 'post' AND p.post_status = 'publish'";
+		$sql .= " WHERE p.post_type IN ('" . implode( "','", RP4WP_Related_Post_Manager::get_supported_post_types() ) . "') AND p.post_status = 'publish'";
 
 		// limit result to post rows WITHOUT joined rows
 		$sql .= ' AND w.post_id IS NULL';
 
 		if( $limit > 0 ) {
-			$sql .= sprintf( ' LIMIT %d', $limit );
+			$sql .= ' LIMIT %d';
+			$sql = $wpdb->prepare( $sql, $limit );
 		}
 
 		return $wpdb->get_col( $sql );
@@ -404,7 +408,7 @@ class RP4WP_Related_Word_Manager {
 
 		$sql = "SELECT COUNT(p.ID) FROM {$wpdb->posts} p";
 		$sql .= " LEFT JOIN {$words_table} w ON w.post_id = p.ID";
-		$sql .= " WHERE p.post_type = 'post' AND p.post_status = 'publish'";
+		$sql .= " WHERE p.post_type IN ('" . implode( "','", RP4WP_Related_Post_Manager::get_supported_post_types() ) . "') AND p.post_status = 'publish'";
 
 		// limit result to post rows WITHOUT joined rows
 		$sql .= ' AND w.post_id IS NULL';
@@ -441,7 +445,7 @@ class RP4WP_Related_Word_Manager {
 	public function get_word_count() {
 		global $wpdb;
 
-		return $wpdb->get_var( "SELECT COUNT(word) FROM `" . self::get_database_table() . "` WHERE `post_type` = 'post'" );
+		return $wpdb->get_var( "SELECT COUNT(word) FROM `" . self::get_database_table() . "` WHERE `post_type` IN ('" . implode( "','", RP4WP_Related_Post_Manager::get_supported_post_types() ) . "') " );
 	}
 
 	/**

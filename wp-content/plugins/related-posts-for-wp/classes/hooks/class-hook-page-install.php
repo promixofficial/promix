@@ -31,7 +31,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				'jquery-ui-core',
 				'jquery-ui-progressbar'
 			), RP4WP::VERSION );
-		wp_enqueue_style( 'jquery-ui-smoothness', "http://ajax.googleapis.com/ajax/libs/jqueryui/" . $wp_scripts->query( 'jquery-ui-core' )->ver . "/themes/smoothness/jquery-ui.css", false, null );
+		wp_enqueue_style( 'jquery-ui-smoothness', "//ajax.googleapis.com/ajax/libs/jqueryui/" . $wp_scripts->query( 'jquery-ui-core' )->ver . "/themes/smoothness/jquery-ui.css", false, null );
 	}
 
 	/**
@@ -120,7 +120,12 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				<?php
 
 				// Hidden fields
-				echo "<input type='hidden' id='rp4wp_total_posts' value='" . wp_count_posts( 'post' )->publish . "' />" . PHP_EOL;
+				$total_posts = 0;
+				$pts = RP4WP_Related_Post_Manager::get_supported_post_types();
+				foreach($pts as $pt) {
+					$total_posts += intval( wp_count_posts( $pt )->publish );
+				}
+				echo "<input type='hidden' id='rp4wp_total_posts' value='" . $total_posts . "' />" . PHP_EOL;
 				echo "<input type='hidden' id='rp4wp_admin_url' value='" . admin_url() . "' />" . PHP_EOL;
 
 				// Echo the nonce
@@ -191,7 +196,7 @@ class RP4WP_Hook_Page_Install extends RP4WP_Hook {
 				}
 				?>
 
-				<div class="rp4wp-box rp4wp-box-upgrade">
+				<div class="rp4wp-box rp4wp-box-upgrade-black">
 					<h3 class="rp4wp-title"><?php _e( 'Related Posts for WordPress Premium', 'related-posts-for-wp' ); ?></h3>
 
 					<p><?php _e( "This plugin has an even better premium version, I am sure you will love it.", 'related-posts-for-wp' ); ?></p>

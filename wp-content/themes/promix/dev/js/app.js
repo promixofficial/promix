@@ -105,22 +105,22 @@
                 return (page === "index" || pages === "");
             },
             isJogos: function(){
-                return (this.atual() === "jogos");
+                return (this.atual().indexOf("jogos") !== -1);
             },
             isManga: function(){
-                return (this.atual() === "manga");
+                return (this.atual().indexOf("manga") !== -1);
             },
             isQuadrinhos: function(){
-                return (this.atual() === "quadrinhos");
+                return (this.atual().indexOf("quadrinhos") !== -1);
             },
             isIlustracoes: function(){
-                return (this.atual() === "ilustracoes");
+                return (this.atual().indexOf("ilustracoes") !== -1);
             },
             isJapones: function(){
-                return (this.atual() === "japones");
+                return (this.atual().indexOf("japones") !== -1);
             },
             isContato: function(){
-                return (this.atual() === "contato");
+                return (this.atual().indexOf("contato") !== -1);
             }
         },
         Modal: {
@@ -194,7 +194,7 @@
     var View = {
         Contact: {
             startForm: function(){
-                $('#contact-form').submit(function( event ) {
+                $('#contact-form').on('submit', function( event ) {
                     event.preventDefault();
                     App.Email.send();
                 });
@@ -237,17 +237,27 @@
         Games: {
             startTriggers: function(){
                 var self = this;
-                $('.pmx-media-figure').on('click', function(){
+                $('.pmx-post-preview').on('click', function(){
                     var element = $(this),
                         url = element.attr('data-url'),
                         size = element.attr('data-size') ? element.attr('data-size') : '640,480',
                         sizes = size.split(',');
                     self.open(url, sizes[0], sizes[1]);
                 });
+                $('.pmx-mobile-store-link').on('click', function(event){
+                    var element = $(this),
+                        url = element.attr('href');
+                        event.stopPropagation();
+                    self.openMobileStore(url);
+                });
             },
             open: function(url, width, height){
                 App.Modal.open(null, true);
                 App.Iframe.create(url, width, height);
+            },
+            openMobileStore: function(url){
+                var win = window.open(url, '_blank');
+                win.focus();
             }
         },
 
@@ -308,14 +318,18 @@
                 }
             },
             setListViewMode: function(){
-                localStorage['pmx-list-view-mode'] = 'list';
-                $('.pmx-post-list').addClass('list-view-mode').removeClass('grid-view-mode');
-                $('.pmx-list-view-toggle').addClass('grid-view-mode').removeClass('list-view-mode').attr('title', 'Posts em Grade');
+                if(!App.Location.isJogos()) {
+                    localStorage['pmx-list-view-mode'] = 'list';
+                    $('.pmx-post-list').addClass('list-view-mode').removeClass('grid-view-mode');
+                    $('.pmx-list-view-toggle').addClass('grid-view-mode').removeClass('list-view-mode').attr('title', 'Posts em Grade');
+                }
             },
             setGridViewMode: function(){
-                localStorage['pmx-list-view-mode'] = 'grid';
-                $('.pmx-post-list').addClass('grid-view-mode').removeClass('list-view-mode');
-                $('.pmx-list-view-toggle').addClass('list-view-mode').removeClass('grid-view-mode').attr('title', 'Posts em Lista');
+                if(!App.Location.isJogos()) {
+                    localStorage['pmx-list-view-mode'] = 'grid';
+                    $('.pmx-post-list').addClass('grid-view-mode').removeClass('list-view-mode');
+                    $('.pmx-list-view-toggle').addClass('list-view-mode').removeClass('grid-view-mode').attr('title', 'Posts em Lista');
+                }
             }
         }
     };
