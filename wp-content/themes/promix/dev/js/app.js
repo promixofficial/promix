@@ -236,7 +236,7 @@
 
         Games: {
             startTriggers: function(){
-                var self = this;
+                /*var self = this;
                 $('.pmx-post-preview').on('click', function(){
                     var element = $(this),
                         url = element.attr('data-url'),
@@ -249,7 +249,7 @@
                         url = element.attr('href');
                         event.stopPropagation();
                     self.openMobileStore(url);
-                });
+                });*/
             },
             open: function(url, width, height){
                 App.Modal.open(null, true);
