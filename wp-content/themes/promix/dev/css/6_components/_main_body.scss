@@ -397,7 +397,17 @@
 
 .pmx-game-iframe-content{
   position: relative;
+  padding: 20px;
+  .pmx-loading{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    transform: translate(-50%);
+  }
   .pmx-game-iframe{
+    position: relative;
+    z-index: 2;
     display: block;
     border: 0px;
     margin: 0 auto;

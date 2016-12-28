@@ -262,8 +262,12 @@
                         event.stopPropagation();
                     self.openMobileStore(url);
                 });*/
-                if(App.Location.isJogos() && Device.isMobile){
-                    $('.pmx-game-iframe-content').html('<img style="max-width: 500px;width: 100%;" class="pmx-game-iframe" src="'+$('.pmx-post-featured-img').attr('src')+'" />');
+                if(App.Location.isJogos()){
+                    if(Device.isMobile){
+                        $('.pmx-game-iframe-content').html('<img style="max-width: 500px;width: 100%;" class="pmx-game-iframe" src="'+$('.pmx-post-featured-img').attr('src')+'" />');
+                    }else{
+                        $('.pmx-game-iframe-content').prepend('<img src="/wp-content/themes/promix/images/loading.gif" class="pmx-loading">');
+                    }
                 }
             },
             open: function(url, width, height){
