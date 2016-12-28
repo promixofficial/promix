@@ -383,7 +383,8 @@ class RP4WP_Post_Link_Manager {
 						 *
 						 * @api String $thumbnail_size The current/default thumbnail size.
 						 */
-						$thumb_size = apply_filters( 'rp4wp_thumbnail_size', 'thumbnail' );
+						//$thumb_size = apply_filters( 'rp4wp_thumbnail_size', 'thumbnail' );
+						$thumb_size = apply_filters( 'rp4wp_thumbnail_size', 'full' );
 
 						$content .= "<div class='rp4wp-related-post-image'>" . PHP_EOL;
 						$content .= "<a href='" . get_permalink( $rp4wp_post->ID ) . "'>";
