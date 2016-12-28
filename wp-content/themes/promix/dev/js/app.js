@@ -48,6 +48,15 @@
             $('.pmx-list-view-toggle').on('click', function(){
                 View.Lists.toggleListViewMode();
             })
+            if(location.href.indexOf('localhost') !== -1){
+                this.addScript('//localhost:35729/livereload.js?snipver=1');
+            }
+        },
+        addScript: function(src,callback) {
+            var s = document.createElement( 'script' );
+            s.setAttribute( 'src', src );
+            s.onload=callback;
+            document.body.appendChild( s );
         },
         Email: {
             send: function(){
