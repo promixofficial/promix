@@ -387,6 +387,14 @@
   clear: both;
 }
 
+.pmx-yt-iframe{
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+  height: 300px;
+  max-width: 500px;
+}
+
 .pmx-game-iframe-content{
   position: relative;
   .pmx-game-iframe{
