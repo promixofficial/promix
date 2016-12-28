@@ -113,7 +113,7 @@
     }
   }
 
-  .current_page_item, .current-menu-item{
+  .current_page_item, .current-menu-item, .current-post-parent{
     background-color: $orange !important;
     pointer-events: none !important;
   }
