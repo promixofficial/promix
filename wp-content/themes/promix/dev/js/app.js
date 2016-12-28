@@ -318,18 +318,14 @@
                 }
             },
             setListViewMode: function(){
-                if(!App.Location.isJogos()) {
                     localStorage['pmx-list-view-mode'] = 'list';
                     $('.pmx-post-list').addClass('list-view-mode').removeClass('grid-view-mode');
                     $('.pmx-list-view-toggle').addClass('grid-view-mode').removeClass('list-view-mode').attr('title', 'Posts em Grade');
-                }
             },
             setGridViewMode: function(){
-                if(!App.Location.isJogos()) {
                     localStorage['pmx-list-view-mode'] = 'grid';
                     $('.pmx-post-list').addClass('grid-view-mode').removeClass('list-view-mode');
                     $('.pmx-list-view-toggle').addClass('list-view-mode').removeClass('grid-view-mode').attr('title', 'Posts em Lista');
-                }
             }
         }
     };

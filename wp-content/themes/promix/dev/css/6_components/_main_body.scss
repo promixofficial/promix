@@ -387,12 +387,34 @@
   clear: both;
 }
 
-.pmx-game-iframe{
-  display: block;
-  border: 0px;
-  margin: 0 auto;
-  overflow: hidden;
-  max-width: 100%;
+.pmx-game-iframe-content{
+  position: relative;
+  .pmx-game-iframe{
+    display: block;
+    border: 0px;
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  @include mobile-only{
+    &.desktop-only::before{
+      content: "Este jogo não está disponível para dispositivos móveis";
+    }
+    &::before{
+      content: "Baixe este jogo para Jogar em dispositivos móveis";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%);
+      text-align: center;
+      padding: 10px;
+      background-color: #000;
+    }
+    .pmx-game-iframe{
+      opacity: 0.2;
+      pointer-events: none;
+    }
+  }
 }
 
 
