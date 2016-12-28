@@ -10,6 +10,7 @@ if ( function_exists('yoast_breadcrumb') ) {
 while ( have_posts() ) : the_post(); ?>
 
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        <?php the_post_thumbnail( 'full', array('style'=>'display: none;', 'class'=>'pmx-post-featured-img') ); ?>
         <header class="entry-header">
             <?php the_title( '<h1 class="pmx-h1">', '</h1>' ); ?>
         </header>
