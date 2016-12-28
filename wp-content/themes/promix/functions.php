@@ -11,6 +11,9 @@ add_action('init', 'register_my_menus');
 add_theme_support( 'post-thumbnails' );
 set_post_thumbnail_size( 120, 120 );
 
+add_theme_support( 'html5', array('search-form') );
+
+
 
 /*
 function create_post_type() {

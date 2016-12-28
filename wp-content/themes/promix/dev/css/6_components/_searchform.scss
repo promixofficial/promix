@@ -1,0 +1,63 @@
+.pmx-search-form{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  @include mobile-only{
+    top: 5px;
+    right: 5px;
+    bottom: initial;
+  }
+  .pmx-search-form-checkbox{
+    display: none;
+    &:checked{
+      + .pmx-search-form-label + .pmx-search-form-field-container{
+        display: inline-block;
+      }
+    }
+  }
+  .pmx-search-form-label{
+    position: relative;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: $black;
+    .fa{
+      font-size: 25px;
+      @extend %align-middle;
+    }
+  }
+  .pmx-search-form-field-container{
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 65;
+    padding: 5px;
+    background-color: #000;
+    &::after{
+      content: "";
+      position: absolute;
+      right: 5px;
+      bottom: -14px;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 7px solid #000;
+      border-bottom: 7px solid transparent;
+    }
+    @include desktop-only{
+      top: -40px;
+    }
+    @include mobile-only{
+      &::after{
+        top: -14px;
+        bottom: initial;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid #000;
+      }
+    }
+
+  }
+  .pmx-search-form-field{
+
+  }
+}

@@ -36,6 +36,7 @@
                 <img class="header-logo" alt="Pro-MIX Logo" title="Pro-MIX プロミックス" src="<?php bloginfo('template_directory') ?>/images/promix_logo.svg" />
             </a>
             <span class="header-slogan" >The best things in life are free.</span>
+            <?php get_search_form(); ?>
         </div>
 
         <nav class="main-menu" >
@@ -50,7 +51,6 @@
             <?php wp_nav_menu(array('theme_location' => 'header-menu')) ?>
         </nav>
     </header>
-
 
     <section  class="main-container"  >
         <main class="main-content" role="main" >
