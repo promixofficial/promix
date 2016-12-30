@@ -9,6 +9,8 @@ if ( function_exists('yoast_breadcrumb') ) {
 
 while ( have_posts() ) : the_post(); ?>
 
+    <?php get_template_part('./partials/social_networks_list_share'); ?>
+
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <?php the_post_thumbnail( 'full', array('style'=>'display: none;', 'class'=>'pmx-post-featured-img') ); ?>
         <header class="entry-header">
@@ -18,6 +20,8 @@ while ( have_posts() ) : the_post(); ?>
             <?php the_content(); ?>
         </div>
     </article><!-- #post-## -->
+
+    <?php get_template_part('./partials/social_networks_list_share'); ?>
 
 <?php endwhile; ?>
 
