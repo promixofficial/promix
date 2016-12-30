@@ -13,6 +13,20 @@
     </div>
 </div>
 
+<form role="search" method="get" class="pmx-page-search-form" action="<?php echo home_url('/'); ?>">
+    <input type="search" class="pmx-search-form-field" placeholder="Pesquisar …" value="<?php echo get_search_query(); ?>" name="s">
+</form>
+
+<?php
+the_posts_pagination(
+    array(
+        'screen_reader_text' => ' ',
+        'next_text' => '<i class="fa fa-chevron-right" ></i>',
+        'prev_text' => '<i class="fa fa-chevron-left" ></i>',
+    )
+);
+?>
+
 <section class="pmx-page-posts">
     <?php if ( have_posts() ){ ?>
         <ul class="pmx-post-list pmx-full-page-list list-view-mode">
@@ -30,6 +44,17 @@
                 </li>
             <?php endwhile; ?>
         </ul>
+
+        <?php
+            the_posts_pagination(
+                array(
+                    'screen_reader_text' => ' ',
+                    'mid_size' => 100,
+                    'next_text' => '<i class="fa fa-chevron-right" ></i>',
+                    'prev_text' => '<i class="fa fa-chevron-left" ></i>',
+                )
+            );
+        ?>
     <?php }else{ ?>
         <div>Nenhum resultado foi retornado</div>
     <?php } ?>

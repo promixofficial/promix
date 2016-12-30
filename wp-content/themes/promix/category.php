@@ -10,8 +10,15 @@ if ( is_single() ) {
     $cat = get_category( get_query_var( 'cat' ) );
 }
 $cat_slug = $cat->slug;
+$pageTitle = $cat->name;
+$currentPage = get_query_var('paged') ? get_query_var('paged') : 1;
 
-$args = array('category_name' => $cat_slug);
+$args = array(
+    'category_name' => $cat_slug,
+    'posts_per_page' => get_option( 'posts_per_page' ),
+    'paged' => $currentPage,
+    'pagination' => true
+);
 $qry = new WP_Query($args);
 
 if ( function_exists('yoast_breadcrumb') ) {
@@ -22,6 +29,7 @@ if ( function_exists('yoast_breadcrumb') ) {
 
 
 <h1 class="pmx-h1"><?php echo $pageTitle; ?></h1>
+
 
 <div class="pmx-list-view-toggle-container">
     <div class="pmx-list-view-toggle list-view-mode" >
@@ -42,4 +50,19 @@ if ( function_exists('yoast_breadcrumb') ) {
     <?php endif; ?>
 </section>
 
-<?php get_footer(); ?>
+
+<?php
+
+the_posts_pagination(
+    array(
+        'screen_reader_text' => ' ',
+        'mid_size' => 100,
+        'next_text' => '<i class="fa fa-chevron-right" ></i>',
+        'prev_text' => '<i class="fa fa-chevron-left" ></i>',
+    )
+);
+
+
+get_footer();
+
+?>

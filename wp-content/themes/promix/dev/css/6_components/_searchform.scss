@@ -1,3 +1,15 @@
+.pmx-page-search-form{
+  .pmx-search-form-field{
+    width: 50%;
+    transition: all 0.8s ease;
+  }
+  @include mobile-only{
+    .pmx-search-form-field{
+      width: 100%;
+    }
+  }
+}
+
 .pmx-search-form{
   position: absolute;
   bottom: 10px;
