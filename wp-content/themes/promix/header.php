@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt_br">
 <head>
-    <title>.:Pro-MIX:. &infin;</title>
+    <title><?php wp_title(); ?></title>
 
     <meta charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,6 +21,8 @@
     <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url') ?>">
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/font/fontello/css/fontello.css">
     <link href='https://fonts.googleapis.com/css?family=Cookie|Sarina|Merienda|Roboto' rel='stylesheet' type='text/css'>
+
+    <?php wp_head(); ?>
 </head>
 <body>
 
