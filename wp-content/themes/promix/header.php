@@ -2,6 +2,14 @@
 <html lang="pt_br">
 <head>
     <title><?php wp_title(); ?></title>
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-0353740728901363",
+            enable_page_level_ads: true
+        }); 
+    </script>
 
     <meta charset="utf-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
