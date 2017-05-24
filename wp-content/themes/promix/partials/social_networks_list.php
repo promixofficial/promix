@@ -1,6 +1,6 @@
 <ul class="social-list" >
     <li class="social-list-item" >
-        <a href="https://www.facebook.com/promix.official" target="_blank" >
+        <a href="https://www.facebook.com/promixofficial" target="_blank" >
             <i class="icon icon-facebook-squared" ></i>
         </a>
     </li>
